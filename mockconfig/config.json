@@ -1,0 +1,8 @@
+{
+    "base": "http://brucezz.leanapp.cn", 
+    "delay": 1000, 
+    "remote": "/storage/emulated/0/APIMock", 
+    "route": {
+    	"/\\w+":"mock/hello.json"
+    }
+}
