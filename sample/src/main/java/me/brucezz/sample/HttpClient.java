@@ -1,6 +1,5 @@
 package me.brucezz.sample;
 
-import android.os.Environment;
 import java.util.concurrent.TimeUnit;
 import me.brucezz.apimock.MockInterceptor;
 import okhttp3.OkHttpClient;
@@ -24,8 +23,7 @@ public class HttpClient {
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(15, TimeUnit.SECONDS)
             .writeTimeout(15, TimeUnit.SECONDS)
-            // "/storage/emulated/0/MockAPI"
-            .addInterceptor(new MockInterceptor(Environment.getExternalStorageDirectory().getAbsolutePath() + "/MockAPI"))
+            .addInterceptor(new MockInterceptor())
             .build();
 
         mRetrofit = new Retrofit.Builder().baseUrl(APIService.BASE)

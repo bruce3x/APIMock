@@ -76,7 +76,7 @@ public class MockConfig {
      */
     public String tryToIntercept(String url) {
 
-        if (!checkConfigFilesChanged()) {
+        if (!checkConfigNotChanged()) {
             // 配置发生改变
             mRouter.clear();
             load(mRemote);
@@ -106,7 +106,7 @@ public class MockConfig {
         Util.warning("Create flag file failed .");
     }
 
-    private boolean checkConfigFilesChanged() {
+    private boolean checkConfigNotChanged() {
         return new File(mRemote, FLAG_FILE).exists();
     }
 
@@ -164,7 +164,9 @@ public class MockConfig {
             mBaseUrl = baseUrl;
             mMockDelay = delay;
             mRouter = router;
-            createFlagFile();
+            if (!checkConfigNotChanged()) {
+                createFlagFile();
+            }
 
             Util.debug("Load config.json successful from " + root);
             return true;

@@ -1,5 +1,6 @@
 package me.brucezz.apimock;
 
+import android.os.Environment;
 import android.os.SystemClock;
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +22,10 @@ public class MockInterceptor implements Interceptor {
     private MockConfig mMockConfig;
     static boolean DEBUG = true;
     static String TAG = "APIMock";
+
+    public MockInterceptor() {
+        this(Environment.getExternalStorageDirectory().getAbsolutePath() + "/APIMock");
+    }
 
     public MockInterceptor(String root) {
         this(root, true);
