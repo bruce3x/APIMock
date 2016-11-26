@@ -16,11 +16,11 @@ import org.json.JSONObject;
  */
 public class MockConfig {
 
-    private static final String FILE_NAME = "config.json";
-    private static final String REMOTE = "remote";
-    private static final String BASE_URL = "base";
-    private static final String DELAY = "delay";
-    private static final String ROUTE = "route";
+    private static final String CONFIG_FILE_NAME = "config.json";
+    private static final String FIELD_REMOTE = "remote";
+    private static final String FIELD_BASE_URL = "base";
+    private static final String FIELD_DELAY = "delay";
+    private static final String FIELD_ROUTE = "route";
 
     /**
      * 标识配置是否改变的空文件（修改配置会删掉原来所有的文件，重新 push 到设备上）
@@ -78,7 +78,6 @@ public class MockConfig {
 
         if (!checkConfigNotChanged()) {
             // 配置发生改变
-            mRouter.clear();
             load(mRemote);
         }
 
@@ -117,7 +116,7 @@ public class MockConfig {
      */
     private boolean load(@NonNull String root) {
         try {
-            File configFile = new File(root, FILE_NAME);
+            File configFile = new File(root, CONFIG_FILE_NAME);
             if (!configFile.exists()) {
                 Util.warning(String.format("%s doesn't exist !", configFile.getAbsoluteFile()));
                 return false;
@@ -126,22 +125,22 @@ public class MockConfig {
             JSONObject configObj = new JSONObject(Util.readFile(configFile));
 
             // 解析 remote 字段
-            String remote = configObj.optString(REMOTE);
+            String remote = configObj.optString(FIELD_REMOTE);
             if (!root.equals(remote)) {
                 throw new MockConfigException("Remote path is not same between app and config file!");
             }
 
             // 解析 base_url 字段
-            String baseUrl = configObj.optString(BASE_URL);
+            String baseUrl = configObj.optString(FIELD_BASE_URL);
             if (Util.isBlank(baseUrl)) {
                 throw new MockConfigException("Base url is blank!");
             }
 
             // 解析 delay 字段
-            int delay = configObj.optInt(DELAY, DEFAULT_MOCK_DELAY);
+            int delay = configObj.optInt(FIELD_DELAY, DEFAULT_MOCK_DELAY);
 
             // 解析路由配置
-            JSONObject routes = configObj.optJSONObject(ROUTE);
+            JSONObject routes = configObj.optJSONObject(FIELD_ROUTE);
             if (routes == null) {
                 throw new MockConfigException("Parse routes failed!");
             }

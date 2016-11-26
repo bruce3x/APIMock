@@ -2,6 +2,7 @@ package me.brucezz.apimock;
 
 import android.os.Environment;
 import android.os.SystemClock;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import okhttp3.Interceptor;
@@ -24,7 +25,7 @@ public class MockInterceptor implements Interceptor {
     static String TAG = "APIMock";
 
     public MockInterceptor() {
-        this(Environment.getExternalStorageDirectory().getAbsolutePath() + "/APIMock");
+        this(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + TAG);
     }
 
     public MockInterceptor(String root) {

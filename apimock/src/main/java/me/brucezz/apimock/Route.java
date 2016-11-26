@@ -50,7 +50,7 @@ public class Route {
      * 是否命中此条规则
      */
     public boolean hit(String url) {
-        return mRule.matcher(url).find();
+        return mRule.matcher(url).matches();
     }
 
     public String getDataFilePath() {
