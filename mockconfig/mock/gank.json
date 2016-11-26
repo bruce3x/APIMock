@@ -1,0 +1,19 @@
+{
+    "error": false,
+    "results": [
+        {
+            "_id": "5836a7fc421aa91cb7afe7e0",
+            "createdAt": "2016-11-24T16:42:36.919Z",
+            "desc": "这是 Mock 的数据",
+            "images": [
+                "http://ww2.sinaimg.cn/large/006y8mN6jw1fa5nwno0boj308c08cweo.jpg"
+            ],
+            "publishedAt": "2016-11-25T11:29:49.832Z",
+            "source": "web",
+            "type": "Android",
+            "url": "http://gank.io/",
+            "used": true,
+            "who": "Lazy"
+        }
+    ]
+}
